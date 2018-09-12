@@ -8,10 +8,9 @@
 
 import UIKit
 
-class MainTableVC: UITableViewController, CancelButtonDelegate {
+class MainTableVC: UITableViewController, AddItemTVCDelegate {
     
     var items: [String] = ["Get Alfie a bikini","Get Alfie a big sombrero","Get Alfie more bones"]
-    
     
     @IBAction func AddButtonPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "FirstToSecondSegue", sender: nil)
@@ -40,11 +39,22 @@ class MainTableVC: UITableViewController, CancelButtonDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let navigationController = segue.destination as! UINavigationController
         let addItemTVC = navigationController.topViewController as! AddItemTVC
-        addItemTVC.delegate = self
+        addItemTVC.delegate = self as AddItemTVCDelegate
     }
 
-    func cancelButtonPressed(by controller: UIViewController) {
+//    func cancelButtonPressed(by controller: UIViewController) {
+//        dismiss(animated: true, completion: nil)
+//    }
+    
+    func addItemViewController(_ controller: AddItemTVC, didFinishAddingItem item: String) {
+        dismiss(animated: true, completion: nil)
+        items.append(item)
+        tableView.reloadData()
+    }
+    
+    func addItemViewController(_ controller: AddItemTVC, didPressCancelButton button: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
+
 
 }

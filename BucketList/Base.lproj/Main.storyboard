@@ -94,8 +94,15 @@
                                 <action selector="cancelButtonPressed:" destination="2X8-s2-iAd" id="6T0-EU-lmy"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="NiK-mW-Cfe"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="NiK-mW-Cfe">
+                            <connections>
+                                <action selector="doneBarButtonPressed:" destination="2X8-s2-iAd" id="3vI-na-7JF"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="itemTextField" destination="IrR-Gv-D8x" id="r3W-2K-TCL"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t1r-5M-vxi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

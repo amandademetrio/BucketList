@@ -10,10 +10,17 @@ import UIKit
 
 class AddItemTVC: UITableViewController {
     
-    weak var delegate: CancelButtonDelegate?
+    weak var delegate: AddItemTVCDelegate?
+    
+    @IBOutlet weak var itemTextField: UITextField!
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        delegate?.cancelButtonPressed(by: self)
+        delegate?.addItemViewController(self, didPressCancelButton: sender)
+    }
+    
+    
+    @IBAction func doneBarButtonPressed(_ sender: UIBarButtonItem) {
+        delegate?.addItemViewController(self, didFinishAddingItem: itemTextField.text!)
     }
     
     override func viewDidLoad() {
