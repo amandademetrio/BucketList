@@ -13,7 +13,7 @@ class MainTableVC: UITableViewController, AddItemTVCDelegate {
     var items: [String] = ["Get Alfie a bikini","Get Alfie a big sombrero","Get Alfie more bones"]
     
     @IBAction func AddButtonPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "FirstToSecondSegue", sender: nil)
+        performSegue(withIdentifier: "FirstToSecondSegue", sender: sender)
     }
     
     override func viewDidLoad() {
@@ -51,12 +51,16 @@ class MainTableVC: UITableViewController, AddItemTVCDelegate {
         tableView.reloadData()
     }
     
+    //after refactoring
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "FirstToSecondSegue" {
+        
+        if sender is UIBarButtonItem {
             let navigationController = segue.destination as! UINavigationController
             let addItemTVC = navigationController.topViewController as! AddItemTVC
             addItemTVC.delegate = self as AddItemTVCDelegate
-        } else if segue.identifier == "EditItemSegue" {
+        }
+            
+        else if sender is IndexPath {
             let navigationController = segue.destination as! UINavigationController
             let addItemTVC = navigationController.topViewController as! AddItemTVC
             addItemTVC.delegate = self as AddItemTVCDelegate
@@ -67,6 +71,27 @@ class MainTableVC: UITableViewController, AddItemTVCDelegate {
         }
         
     }
+    
+//      before refactoring
+//      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//
+//        if segue.identifier == "FirstToSecondSegue" {
+//            let navigationController = segue.destination as! UINavigationController
+//            let addItemTVC = navigationController.topViewController as! AddItemTVC
+//            addItemTVC.delegate = self as AddItemTVCDelegate
+//        }
+//
+//        else if segue.identifier == "EditItemSegue" {
+//            let navigationController = segue.destination as! UINavigationController
+//            let addItemTVC = navigationController.topViewController as! AddItemTVC
+//            addItemTVC.delegate = self as AddItemTVCDelegate
+//            let indexPath = sender as! NSIndexPath
+//            let item = items[indexPath.row]
+//            addItemTVC.item = item
+//            addItemTVC.indexPath = indexPath
+//        }
+//
+//    }
 
 //    func cancelButtonPressed(by controller: UIViewController) {
 //        dismiss(animated: true, completion: nil)
