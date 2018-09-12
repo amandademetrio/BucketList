@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
 class MainTableVC: UITableViewController, AddItemTVCDelegate {
     
-    var items: [String] = ["Get Alfie a bikini","Get Alfie a big sombrero","Get Alfie more bones"]
+    var items = [BucketListItem]()
+    
+    //Stagging area for stuff to be added to Core Data
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let saveContext = (UIApplication.shared.delegate as! AppDelegate).saveContext
     
     @IBAction func AddButtonPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "FirstToSecondSegue", sender: sender)
@@ -18,6 +23,7 @@ class MainTableVC: UITableViewController, AddItemTVCDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchAllItems()
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,7 +38,7 @@ class MainTableVC: UITableViewController, AddItemTVCDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath)
-        cell.textLabel?.text = items[indexPath.row]
+        cell.textLabel?.text = items[indexPath.row].text!
         return cell
     }
     
@@ -47,7 +53,10 @@ class MainTableVC: UITableViewController, AddItemTVCDelegate {
     
     //swipe to delete
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let i = items[indexPath.row]
+        context.delete(i)
         items.remove(at: indexPath.row)
+        saveContext()
         tableView.reloadData()
     }
     
@@ -66,7 +75,7 @@ class MainTableVC: UITableViewController, AddItemTVCDelegate {
             addItemTVC.delegate = self as AddItemTVCDelegate
             let indexPath = sender as! NSIndexPath
             let item = items[indexPath.row]
-            addItemTVC.item = item
+            addItemTVC.item = item.text!
             addItemTVC.indexPath = indexPath
         }
         
@@ -97,18 +106,33 @@ class MainTableVC: UITableViewController, AddItemTVCDelegate {
 //        dismiss(animated: true, completion: nil)
 //    }
     
+    func fetchAllItems() {
+        let itemRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BucketListItem")
+        do {
+            let results = try context.fetch(itemRequest)
+            items = results as! [BucketListItem]
+        }
+        catch {
+            print("\(error)")
+        }
+    }
+    
     func addItemViewController(_ controller: AddItemTVC, didFinishAddingItem item: String, at indexPath: NSIndexPath?) {
-        
         dismiss(animated: true, completion: nil)
-        
+        //if object already exists
         if let ip = indexPath  {
-            items[ip.row] = item
+            let i = items[ip.row]
+            i.text = item
             tableView.reloadData()
         }
+        //adding object to list of objects
         else {
-            items.append(item)
+            let i = BucketListItem(context: context)
+            i.text = item
+            items.append(i)
             tableView.reloadData()
         }
+        saveContext()
     }
     
     func cancelForTVC(_ controller: AddItemTVC, didPressCancelButton button: UIBarButtonItem) {
