@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 
 protocol AddItemTVCDelegate: class {
-    func addItemViewController(_ controller: AddItemTVC, didFinishAddingItem item: String)
-    func addItemViewController(_ controller: AddItemTVC, didPressCancelButton button: UIBarButtonItem)
+    
+    func addItemViewController(_ controller: AddItemTVC, didFinishAddingItem item: String, at indexPath: NSIndexPath?)
+    
+    func cancelForTVC(_ controller: AddItemTVC, didPressCancelButton button: UIBarButtonItem)
+    
 }

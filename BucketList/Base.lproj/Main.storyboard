@@ -18,11 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyCell" id="b3X-Lp-0Nm">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="MyCell" id="b3X-Lp-0Nm">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="b3X-Lp-0Nm" id="NcM-Xj-9Qa">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="307" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -41,6 +41,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="S54-nq-UIb" kind="presentation" identifier="FirstToSecondSegue" id="glC-yt-o4m"/>
+                        <segue destination="S54-nq-UIb" kind="presentation" identifier="EditItemSegue" id="GWz-7O-PuJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H9C-am-WrZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -145,4 +146,7 @@
             <point key="canvasLocation" x="2280.8000000000002" y="153.37331334332833"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="GWz-7O-PuJ"/>
+    </inferredMetricsTieBreakers>
 </document>

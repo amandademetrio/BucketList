@@ -36,23 +36,57 @@ class MainTableVC: UITableViewController, AddItemTVCDelegate {
         return cell
     }
     
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        performSegue(withIdentifier: "EditItemSegue", sender: indexPath)
+//    }
+    
+    //Adding accessory and detail button
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        performSegue(withIdentifier: "EditItemSegue", sender: indexPath)
+    }
+    
+    //swipe to delete
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        items.remove(at: indexPath.row)
+        tableView.reloadData()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let navigationController = segue.destination as! UINavigationController
-        let addItemTVC = navigationController.topViewController as! AddItemTVC
-        addItemTVC.delegate = self as AddItemTVCDelegate
+        if segue.identifier == "FirstToSecondSegue" {
+            let navigationController = segue.destination as! UINavigationController
+            let addItemTVC = navigationController.topViewController as! AddItemTVC
+            addItemTVC.delegate = self as AddItemTVCDelegate
+        } else if segue.identifier == "EditItemSegue" {
+            let navigationController = segue.destination as! UINavigationController
+            let addItemTVC = navigationController.topViewController as! AddItemTVC
+            addItemTVC.delegate = self as AddItemTVCDelegate
+            let indexPath = sender as! NSIndexPath
+            let item = items[indexPath.row]
+            addItemTVC.item = item
+            addItemTVC.indexPath = indexPath
+        }
+        
     }
 
 //    func cancelButtonPressed(by controller: UIViewController) {
 //        dismiss(animated: true, completion: nil)
 //    }
     
-    func addItemViewController(_ controller: AddItemTVC, didFinishAddingItem item: String) {
+    func addItemViewController(_ controller: AddItemTVC, didFinishAddingItem item: String, at indexPath: NSIndexPath?) {
+        
         dismiss(animated: true, completion: nil)
-        items.append(item)
-        tableView.reloadData()
+        
+        if let ip = indexPath  {
+            items[ip.row] = item
+            tableView.reloadData()
+        }
+        else {
+            items.append(item)
+            tableView.reloadData()
+        }
     }
     
-    func addItemViewController(_ controller: AddItemTVC, didPressCancelButton button: UIBarButtonItem) {
+    func cancelForTVC(_ controller: AddItemTVC, didPressCancelButton button: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
 
