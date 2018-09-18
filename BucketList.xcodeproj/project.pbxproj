@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D054720021488D79000D282B /* AddItemTVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05471FF21488D79000D282B /* AddItemTVCDelegate.swift */; };
+		D05A8D5E21504EEF003278E2 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05A8D5D21504EEF003278E2 /* TaskModel.swift */; };
 		D0E5CC1A21485A8E00713770 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E5CC1921485A8E00713770 /* AppDelegate.swift */; };
 		D0E5CC1F21485A8E00713770 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E5CC1D21485A8E00713770 /* Main.storyboard */; };
 		D0E5CC2221485A8E00713770 /* BucketList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0E5CC2021485A8E00713770 /* BucketList.xcdatamodeld */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		D05471FF21488D79000D282B /* AddItemTVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemTVCDelegate.swift; sourceTree = "<group>"; };
+		D05A8D5D21504EEF003278E2 /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		D0E5CC1621485A8E00713770 /* BucketList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BucketList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0E5CC1921485A8E00713770 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0E5CC1E21485A8E00713770 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				D0E5CC302148702000713770 /* AddItemTVC.swift */,
 				D05471FF21488D79000D282B /* AddItemTVCDelegate.swift */,
 				D0E5CC32214870DD00713770 /* CancelButtonDelegate.swift */,
+				D05A8D5D21504EEF003278E2 /* TaskModel.swift */,
 				D0E5CC2321485A8E00713770 /* Assets.xcassets */,
 				D0E5CC2521485A8E00713770 /* LaunchScreen.storyboard */,
 				D0E5CC2821485A8E00713770 /* Info.plist */,
@@ -153,6 +156,7 @@
 				D0E5CC2F21485C4F00713770 /* MainTableVC.swift in Sources */,
 				D0E5CC1A21485A8E00713770 /* AppDelegate.swift in Sources */,
 				D054720021488D79000D282B /* AddItemTVCDelegate.swift in Sources */,
+				D05A8D5E21504EEF003278E2 /* TaskModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
